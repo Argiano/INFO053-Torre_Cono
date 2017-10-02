@@ -1,7 +1,7 @@
 #ifndef PISO
 #define PISO
 
-typedef struct{
+typedef struct piso{
     int diametro;
     struct piso *arriba;
     struct piso *abajo;
