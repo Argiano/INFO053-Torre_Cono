@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "floor.h"
+#include "pueblo.h"
 
 //Metodos
 void print_tower(int N);
