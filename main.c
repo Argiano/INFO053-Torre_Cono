@@ -5,7 +5,7 @@
 #include "pueblo.h"
 
 //Metodos
-void print_tower(int N);
+void print_tower(int N, pueblo*town);
 
 int main(int argc, char **argv){
     if (argc != 2){
@@ -13,12 +13,15 @@ int main(int argc, char **argv){
         exit(EXIT_FAILURE);
     }
 
-    print_tower(atoi(argv [1]));
+    print_tower(atoi(argv [1]), NULL);
+
+
     return EXIT_SUCCESS;
 }
 
-void print_tower(int N){
+void print_tower(int N, pueblo *town){
     for(int i = 0; i < N; i++){
-        printf("|-%i-|\t|-%i-|\n", i, NULL);
+        printf("|-%i-|\n", i);
     }
+    printf("Pueblo 1\n");
 }

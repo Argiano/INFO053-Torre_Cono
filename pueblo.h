@@ -8,7 +8,7 @@ typedef struct piso{
 }piso;
 
 typedef struct pueblo{
-    struct piso *base;
+    struct piso *comienzo;
     int altura;
 }pueblo;
 
@@ -17,8 +17,16 @@ typedef struct pueblo{
 //---------
 
 void new_piso();
+pueblo* crear_pueblo();
 
 
 
+//---------------------
+//DECLARACION FUNCIONES
+//---------------------
 
+pueblo * crear_pueblo(){
+    pueblo *town = (pueblo*)malloc(sizeof(pueblo));
+    return town;
+}
 #endif
