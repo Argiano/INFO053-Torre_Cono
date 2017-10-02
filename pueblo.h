@@ -29,4 +29,12 @@ pueblo * crear_pueblo(){
     pueblo *town = (pueblo*)malloc(sizeof(pueblo));
     return town;
 }
+
+piso* crear_piso(int medida){
+    piso *p = (*piso)malloc(sizeof(piso));
+    p->diametro = medida;
+    p->abajo = NULL;
+    return p;
+}
+
 #endif
