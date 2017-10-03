@@ -30,11 +30,10 @@ pueblo * crear_pueblo(){
     return town;
 }
 
-piso* crear_piso(int medida){
+void crear_piso(int medida){
     piso *p = (*piso)malloc(sizeof(piso));
     p->diametro = medida;
     p->abajo = NULL;
-    return p;
 }
 
 #endif
