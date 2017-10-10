@@ -40,6 +40,14 @@ civ *crear_civ(int pisos, int origen){
     return c;
 }
 
+pueblo *crear_pueblos(int altura, int torre){
+    //Array de pueblos
+    pueblo *p = (pueblo*)malloc(sizeof(pueblo)*3);
+
+
+    return NULL;
+}
+
 
 pueblo* crear_pueblo(int altura, int numero){
     pueblo *town = (pueblo*)malloc(sizeof(pueblo));

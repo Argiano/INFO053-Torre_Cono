@@ -18,6 +18,8 @@ int main(int argc, char **argv){
     int mode = atoi(argv[4]);
 
     //MAIN CODE
+
+    pueblo *pueblos = crear_pueblos(pisos, origen);
     print_tower(pisos, NULL);
 
     return EXIT_SUCCESS;
