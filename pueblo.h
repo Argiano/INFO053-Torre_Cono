@@ -61,6 +61,7 @@ pueblo crear_pueblo(int altura, int numero){
 }
 
 piso* crear_piso(){
+    int n;
     piso *p = (piso*)malloc(sizeof(piso));
     p->diametro = 0;
     p->abajo = NULL;
