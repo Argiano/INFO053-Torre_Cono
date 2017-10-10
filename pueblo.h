@@ -60,7 +60,7 @@ pueblo crear_pueblo(int altura, int numero){
     return town;
 }
 
-piso*crear_piso(){
+piso* crear_piso(){
     piso *p = (piso*)malloc(sizeof(piso));
     p->diametro = 0;
     p->abajo = NULL;
