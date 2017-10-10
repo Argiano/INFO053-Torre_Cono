@@ -24,7 +24,7 @@ typedef struct civ{
 //---------
 
 void new_piso();
-pueblo* crear_pueblo(int altura, int numero);
+pueblo crear_pueblo(int altura, int numero);
 piso *crear_piso();
 void mover_piso(int origen, int destino);
 civ *crear_civ(int pisos, int origen);
@@ -43,17 +43,19 @@ civ *crear_civ(int pisos, int origen){
 pueblo *crear_pueblos(int altura, int torre){
     //Array de pueblos
     pueblo *p = (pueblo*)malloc(sizeof(pueblo)*3);
+    for(int i = 0; i < 3; i++){
+        p[i] = (i = torre-1)? crear_pueblo(altura, torre): crear_pueblo(0,i+1);
+    }
 
-
-    return NULL;
+    return p;
 }
 
 
-pueblo* crear_pueblo(int altura, int numero){
-    pueblo *town = (pueblo*)malloc(sizeof(pueblo));
-    town ->num_pueblo = numero;
+pueblo crear_pueblo(int altura, int numero){
+    pueblo town = (pueblo*)malloc(sizeof(pueblo));
+    town.num_pueblo = numero;
     for (int i = 0; i < altura; i++){
-        town -> comienzo = crear_piso();
+        town.comienzo = crear_piso();
     }
     return town;
 }
