@@ -25,12 +25,25 @@ int main(int argc, char **argv){
     return EXIT_SUCCESS;
 }
 
-void print_tower(int N, pueblo *town){
-    for(int i = 0; i < N; i++){
-        printf("|-%i-|\n", i);
+void print_tower(int pisos, pueblo *town){
+    int max_altura;
+    int highest_town;
+    for(int i = 0; i < 3; i++){
+        max_altura = (max_altura < town[i].altura) ? town[i].altura : max_altura;
+        highest_town = (max_altura == town[i].altura)? i: highest_town;
     }
+    for(int i = 0; i < max_altura; i++){
+        for(int t = 0; t<3; t++){
+            if (town[t].altura = max_altura){
+                printf("%i\t");
+            }else {
+                printf("\t");
+            }
+        }
+    }
+
     for (int j = 0; j <3; j++){
-        printf("pueblo %i ",town[j].num_pueblo);
+        printf("pueblo %i\t",town[j].num_pueblo);
     }
     printf("\n");
 }
