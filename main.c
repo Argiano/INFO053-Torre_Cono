@@ -27,7 +27,11 @@ int main(int argc, char **argv){
 
 void print_tower(int N, pueblo *town){
     for(int i = 0; i < N; i++){
-        printf("|-%i-|\n", i);
+        for(int k = 0; k<3; k){
+            if(k = 2)printf("|-%i-|", i);
+            else printf("    ");
+        }
+        printf("\n");
     }
     for (int j = 0; j <3; j++){
         printf("pueblo %i ",town[j].num_pueblo);
