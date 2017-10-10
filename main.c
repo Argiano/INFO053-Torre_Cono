@@ -8,13 +8,17 @@
 void print_tower(int N, pueblo*town);
 
 int main(int argc, char **argv){
-    if (argc != 2){
-        fprintf(stderr, "ejecutar como ./prog N\n");
+    if (argc != 5){
+        fprintf(stderr, "ejecutar como ./prog pisos origen destino modo\n");
         exit(EXIT_FAILURE);
     }
+    int pisos = atoi(argv[1]);
+    int origen = atoi(argv[2]);
+    int destino = atoi(argv[3]);
+    int mode = atoi(argv[4]);
 
-    print_tower(atoi(argv [1]), NULL);
-
+    //MAIN CODE
+    print_tower(pisos, NULL);
 
     return EXIT_SUCCESS;
 }
