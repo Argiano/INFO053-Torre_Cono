@@ -30,7 +30,7 @@ void print_tower(int N, pueblo *town){
         printf("|-%i-|\n", i);
     }
     for (int j = 0; j <3; j++){
-        printf("pueblo %i",town[j].num_pueblo);
+        printf("pueblo %i ",town[j].num_pueblo);
     }
     printf("\n");
 }
