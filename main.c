@@ -20,7 +20,7 @@ int main(int argc, char **argv){
     //MAIN CODE
 
     pueblo *pueblos = crear_pueblos(pisos, origen);
-    print_tower(pisos, NULL);
+    print_tower(pisos, pueblos);
 
     return EXIT_SUCCESS;
 }
@@ -29,5 +29,8 @@ void print_tower(int N, pueblo *town){
     for(int i = 0; i < N; i++){
         printf("|-%i-|\n", i);
     }
-    printf("Pueblo 1\n");
+    for (int j = 0; j <3; j++){
+        printf("pueblo %i",town[j].num_pueblo);
+    }
+    printf("\n");
 }

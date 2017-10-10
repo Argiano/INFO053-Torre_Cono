@@ -44,7 +44,7 @@ pueblo *crear_pueblos(int altura, int torre){
     //Array de pueblos
     pueblo *p = (pueblo*)malloc(sizeof(pueblo)*3);
     for(int i = 0; i < 3; i++){
-        p[i] = (i = torre-1)? crear_pueblo(altura, torre): crear_pueblo(0,i+1);
+        p[i] = (i == torre-1)? crear_pueblo(altura, torre): crear_pueblo(0,i+1);
     }
 
     return p;
@@ -52,7 +52,7 @@ pueblo *crear_pueblos(int altura, int torre){
 
 
 pueblo crear_pueblo(int altura, int numero){
-    pueblo town = (pueblo*)malloc(sizeof(pueblo));
+    pueblo town;
     town.num_pueblo = numero;
     for (int i = 0; i < altura; i++){
         town.comienzo = crear_piso();
