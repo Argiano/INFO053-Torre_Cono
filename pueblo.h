@@ -53,16 +53,19 @@ pueblo *crear_pueblos(int altura, int torre){
 
 pueblo crear_pueblo(int altura, int numero){
     pueblo town;
+    piso *aux = NULL;
     int diametro = (rand()&23)+1;
-    int comp = diametro;
     town.num_pueblo = numero;
     printf("altura %i \n", altura);
     for (int i = 0; i < altura; i++){
-        while (diametro > comp){
-            diametro = (rand()&23)+1;
+        if(i!=0){
+            aux = town.comienzo;
+            while (diametro > town.comienzo->diametro){
+                diametro = (rand()&23)+1;
+            }
         }
-        comp = diametro;
         town.comienzo = crear_piso(diametro);
+        town.comienzo->abajo = aux;
         diametro = (rand()&23)+1;
         printf("%i\n",town.comienzo->diametro);
     }
