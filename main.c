@@ -16,6 +16,8 @@ int main(int argc, char **argv){
     int origen = atoi(argv[2]);
     int destino = atoi(argv[3]);
     int mode = atoi(argv[4]);
+    int aux = (origen+destino == 4)? 2 : ((origen+destino == 5)? 1: 3);
+    printf("aux: %i\n", aux);
 
     //MAIN CODE
 
@@ -39,8 +41,6 @@ void print_tower(int pisos, pueblo *town){
         }
         printf("\n");
     }
-
-    
     for (int j = 0; j < 3; j++){
         printf("pueblo %i\t",town[j].num_pueblo);
     }
