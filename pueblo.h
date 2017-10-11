@@ -1,6 +1,8 @@
 #ifndef PUEBLO_H
 #define PUEBLO_H
 
+#define ANCHO_MAXIMO 24
+
 //estructuras PISO
 typedef struct piso{
     int diametro;
@@ -25,6 +27,7 @@ piso *crear_piso(piso* start, int d);
 void mover_piso(int origen, int destino, pueblo **pueblos);
 piso* pop(piso** p);
 void push(piso** pila, piso *aux);
+int* crear_diametros(int largo);
 
 
 //---------------------
@@ -48,7 +51,8 @@ pueblo crear_pueblo(int altura, int numero){
     town.num_pueblo = numero;
     town.altura = altura;
     town.comienzo = NULL;
-    printf("altura %i \n", altura);
+    //printf("altura %i \n", altura);
+    int *diametros = crear_diametros(altura);
     for (int i = 0; i < altura; i++){
         if(i!=0){
             while (diametro > town.comienzo->diametro){
@@ -58,7 +62,7 @@ pueblo crear_pueblo(int altura, int numero){
         town.comienzo = crear_piso(town.comienzo, diametro);
 
         diametro = (rand()&23)+1;
-        printf("%i\n",town.comienzo->diametro);
+        //printf("%i\n",town.comienzo->diametro);
     }
     return town;
 }
@@ -82,11 +86,28 @@ piso* pop(piso **p){
     piso *temp = *p;
     *p = (*p)->abajo;
     return temp;
- }
+}
 
 void push(piso** pila, piso *aux){
     (aux)->abajo = *pila;
     *pila = (aux);
- }
+}
+
+int *crear_diametros(int largo){
+    int *diametros = (int*)malloc(sizeof(int)*largo);
+    for (int i = 0; i < largo; i++){
+        diametros[i] = (rand()&23)+1;
+        printf("diametro %i: %i\n", i, diametros[i]);
+    }
+    return diametros;
+}
+
+int *ordenar_lista(int *lista, int largo){
+    for (int i = 0; i < largo; i++){
+        
+    }
+
+    return  lista;
+}
 
 #endif
