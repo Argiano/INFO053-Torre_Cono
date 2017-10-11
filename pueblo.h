@@ -23,6 +23,8 @@ void new_piso();
 pueblo crear_pueblo(int altura, int numero);
 piso *crear_piso(piso* start, int d);
 void mover_piso(int origen, int destino, pueblo **pueblos);
+piso* pop(piso** p);
+void push(piso** pila, piso *aux);
 
 
 //---------------------
@@ -70,12 +72,20 @@ piso* crear_piso(piso* start, int d){
 }
 
 void mover_piso(int origen, int destino, pueblo **pueblos){
-    piso *aux = (*pueblos)[origen-1].comienzo;
-    (*pueblos)[origen-1].comienzo = (*pueblos)[origen-1].comienzo->abajo;
+    piso *aux = pop(&((*pueblos)[origen-1].comienzo));
     (*pueblos)[origen-1].altura--;
-    aux->abajo =(*pueblos)[destino-1].comienzo;
-    (*pueblos)[destino-1].comienzo = aux;
+    push(&((*pueblos)[destino-1].comienzo), aux);
     (*pueblos)[destino-1].altura++;
 }
 
+piso* pop(piso **p){
+    piso *temp = *p;
+    *p = (*p)->abajo;
+    return temp;
+ }
+
+void push(piso** pila, piso *aux){
+    (aux)->abajo = *pila;
+    *pila = (aux);
+ }
 #endif
