@@ -21,6 +21,8 @@ int main(int argc, char **argv){
 
     pueblo *pueblos = crear_pueblos(pisos, origen);
     print_tower(pisos, pueblos);
+    mover_piso(origen,destino,&pueblos);
+    print_tower(pisos, pueblos);
 
     return EXIT_SUCCESS;
 }
@@ -28,26 +30,18 @@ int main(int argc, char **argv){
 void print_tower(int pisos, pueblo *town){
     int max_altura;
     int highest_town;
-    for(int i = 0; i < 3; i++){
-        printf("altura pueblo %i, %i\n",i, town[i].altura);
-        max_altura = (max_altura < town[i].altura) ? town[i].altura : max_altura;
-        
-        highest_town = (max_altura == town[i].altura)? i: highest_town;
-        printf("MAX_ALTURA: %i, HIGHEST_TOWN: %i\n", max_altura, highest_town);
-    }
-    
-    for(int i = 0; i < max_altura; i++){
-        for(int t = 0; t<3; t++){
-            if (town[t].altura >= max_altura-i){
-                printf("|-%i-|\t\t", i);
-            }else {
-                printf("\t");
-            }
+    for (int i = 0; i < 3; i++){
+        printf("altura pueblo %i: %i\t", town[i].num_pueblo, town[i].altura);
+        piso *r = town[i].comienzo;
+        while (r != NULL){
+            printf("|-%i-|", r->diametro);
+            r = r->abajo;
         }
         printf("\n");
     }
+
     
-    for (int j = 0; j <3; j++){
+    for (int j = 0; j < 3; j++){
         printf("pueblo %i\t",town[j].num_pueblo);
     }
     printf("\n");
