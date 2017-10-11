@@ -28,6 +28,7 @@ void mover_piso(int origen, int destino, pueblo **pueblos);
 piso* pop(piso** p);
 void push(piso** pila, piso *aux);
 int* crear_diametros(int largo);
+int *ordenar_lista(int *lista, int largo);
 
 
 //---------------------
@@ -47,22 +48,13 @@ pueblo *crear_pueblos(int altura, int torre){
 
 pueblo crear_pueblo(int altura, int numero){
     pueblo town;
-    int diametro = (rand()&23)+1;
     town.num_pueblo = numero;
     town.altura = altura;
     town.comienzo = NULL;
     //printf("altura %i \n", altura);
     int *diametros = crear_diametros(altura);
     for (int i = 0; i < altura; i++){
-        if(i!=0){
-            while (diametro > town.comienzo->diametro){
-                diametro = (rand()&23)+1;
-            }
-        }
-        town.comienzo = crear_piso(town.comienzo, diametro);
-
-        diametro = (rand()&23)+1;
-        //printf("%i\n",town.comienzo->diametro);
+        town.comienzo = crear_piso(town.comienzo, diametros[i]);
     }
     return town;
 }
@@ -97,16 +89,20 @@ int *crear_diametros(int largo){
     int *diametros = (int*)malloc(sizeof(int)*largo);
     for (int i = 0; i < largo; i++){
         diametros[i] = (rand()&23)+1;
-        printf("diametro %i: %i\n", i, diametros[i]);
     }
-    return diametros;
+    return ordenar_lista(diametros, largo);
 }
 
 int *ordenar_lista(int *lista, int largo){
     for (int i = 0; i < largo; i++){
-        
+        for (int j = 0; j < largo-i-1; j++){
+            if (lista[j] < lista[j+1]){
+                int temp = lista[j];
+                lista[j] = lista[j+1];
+                lista[j+1] = temp;
+            }
+        }
     }
-
     return  lista;
 }
 
