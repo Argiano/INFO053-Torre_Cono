@@ -29,6 +29,9 @@ piso* pop(piso** p);
 void push(piso** pila, piso *aux);
 int* crear_diametros(int largo);
 int *ordenar_lista(int *lista, int largo);
+void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town);
+void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town);
+void print_tower(int pisos, pueblo *town);
 
 
 //---------------------
@@ -104,6 +107,65 @@ int *ordenar_lista(int *lista, int largo){
         }
     }
     return  lista;
+}
+
+void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town){
+    if (pisos == 1){
+        mover_piso(origen, destino, town);
+    }else{
+        moviendo(pisos - 1, origen, aux, destino, town);
+        mover_piso(origen, destino, town);
+        moviendo(pisos - 1, aux, destino, origen, town);
+    }
+}
+
+void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town){
+    if (altura == 1){
+        mover_piso(origen, destino, town);
+        print_tower(altura, (*town));
+    }else{
+        print_tower(altura, (*town));
+        moviendo(altura-1, origen, aux, destino, town);
+        print_tower(altura, (*town));
+        mover_piso(origen, destino, town);
+        print_tower(altura, (*town));
+        moviendo(altura -1 , aux, destino, origen, town);
+        print_tower(altura, (*town));
+    }
+}
+
+void print_tower(int pisos, pueblo *town){
+    int max_altura = 0;
+    int highest_town = 0;
+
+    for (int h = 0; h < 3; h++){
+        //printf("altura pueblo %i: %i\t", town[h].num_pueblo, town[h].altura);
+        max_altura = (town[h].altura > max_altura)? town[h].altura: max_altura;
+        highest_town = (town[h].altura == max_altura) ? town[h].num_pueblo: highest_town;
+        //printf("max_altura: %i, pueblo: %i\n", max_altura, highest_town);
+    }
+
+    char buf[100] = "";
+
+    for(int level = max_altura; level > 0; level--){
+        for (int t = 0; t < 3; t++){
+            if (town[t].altura >= level){
+                piso *temp = town[t].comienzo;
+                for (int s = town[t].altura ; s >level; s--){
+                    temp = temp->abajo;
+                }
+                printf("|-%i-|\t\t", (*temp).diametro);
+            }else{
+                printf("\t\t");
+            }
+        }
+        printf("\n");
+    }
+
+    for (int j = 0; j < 3; j++){
+        printf("pueblo %i\t",town[j].num_pueblo);
+    }
+    printf("\n");
 }
 
 #endif
