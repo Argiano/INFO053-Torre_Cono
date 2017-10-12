@@ -26,7 +26,7 @@ int main(int argc, char **argv){
     moviendo(pisos, origen, destino, aux, &pueblos, mode);
     printf("Total de movimientos: %i\n", total_mov(pisos));
     printf("-----------ESTADO FINAL----------\n");
-    print_tower(pueblos);
+    print_tower_char(pueblos);
     
 
 

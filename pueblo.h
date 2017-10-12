@@ -128,9 +128,13 @@ void print_tower(pueblo *town){
     int highest_town = 0;
 
     for (int h = 0; h < 3; h++){
+        //printf("altura pueblo %i: %i\t", town[h].num_pueblo, town[h].altura);
         max_altura = (town[h].altura > max_altura)? town[h].altura: max_altura;
         highest_town = (town[h].altura == max_altura) ? town[h].num_pueblo: highest_town;
+        //printf("max_altura: %i, pueblo: %i\n", max_altura, highest_town);
     }
+
+    char buf[100] = "";
 
     for(int level = max_altura; level > 0; level--){
         for (int t = 0; t < 3; t++){
@@ -152,7 +156,51 @@ void print_tower(pueblo *town){
     }
     printf("\n");
 }
+
+void print_tower_char(pueblo *town){
+    int max_altura = 0;
+
+    for (int h = 0; h < 3; h++){
+        max_altura = (town[h].altura > max_altura)? town[h].altura: max_altura;
+    }
+
+    for(int level = max_altura; level > 0; level--){    
+        for (int t = 0; t < 3; t++){
+            char buf[512] = "";
+            if (town[t].altura >= level){
+                piso *temp = town[t].comienzo;
+                for (int s = town[t].altura ; s >level; s--){
+                    temp = temp->abajo;
+                }
+                //printf("|-%i-|\t\t", (*temp).diametro);
+                
+                for (int a = 0; a < 24; a++){
+                    int spaces = 24 - (*temp).diametro;
+                    if(a <= spaces/2 || a > ((*temp).diametro)+spaces/2){
+                        strcat(buf," ");
+                    }else{
+                        strcat(buf,"*");
+                    }
+                }
+                
+            }else{
+                for (int a = 0; a < 24; a++){
+                    strcat(buf," ");
+                }
+            }
+            printf("%s\t",buf);
+        }
+        printf("\n");
+    }
+
+    for (int j = 0; j < 3; j++){
+        printf("\tpueblo %i\t\t",town[j].num_pueblo);
+    }
+    printf("\n");
+}
+
 int total_mov(int pisos){
     return pow(2,pisos)-1;
 }
+
 #endif
