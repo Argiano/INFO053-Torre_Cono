@@ -24,13 +24,13 @@ typedef struct pueblo{
 void new_piso();
 pueblo crear_pueblo(int altura, int numero);
 piso *crear_piso(piso* start, int d);
-void mover_piso(int origen, int destino, pueblo **pueblos);
+void mover_piso(int origen, int destino, pueblo **pueblos,int modo);
 piso* pop(piso** p);
 void push(piso** pila, piso *aux);
 int* crear_diametros(int largo);
 int *ordenar_lista(int *lista, int largo);
-void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town);
-void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town);
+void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town, int modo);
+void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town, int modo);
 void print_tower(pueblo *town);
 
 
@@ -70,12 +70,18 @@ piso* crear_piso(piso* start, int d){
     return p;
 }
 
-void mover_piso(int origen, int destino, pueblo **pueblos){
+void mover_piso(int origen, int destino, pueblo **pueblos, int modo){
     piso *aux = pop(&((*pueblos)[origen-1].comienzo));
     (*pueblos)[origen-1].altura--;
     push(&((*pueblos)[destino-1].comienzo), aux);
     (*pueblos)[destino-1].altura++;
-    print_tower(*pueblos);
+    if(modo == 1){
+        print_tower(*pueblos);
+        char s[100];
+        printf("Presione enter para seguir viendo el animu de la torre");
+        gets(s);
+        printf("\n");
+    }
 }
 
 piso* pop(piso **p){
@@ -110,25 +116,25 @@ int *ordenar_lista(int *lista, int largo){
     return  lista;
 }
 
-void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town){
+void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town, int modo){
     if (pisos == 1){
-        mover_piso(origen, destino, town);
+        mover_piso(origen, destino, town, modo);
     }else{
-        moviendo(pisos - 1, origen, aux, destino, town);
-        mover_piso(origen, destino, town);
-        moviendo(pisos - 1, aux, destino, origen, town);
+        moviendo(pisos - 1, origen, aux, destino, town, modo);
+        mover_piso(origen, destino, town, modo);
+        moviendo(pisos - 1, aux, destino, origen, town, modo);
     }
 }
 
-void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town){
+void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town,int modo){
     system("PAUSE");
     
     if (altura == 1){
-        mover_piso(origen, destino, town);
+        mover_piso(origen, destino, town, modo);
     }else{
-        moviendo(altura-1, origen, aux, destino, town);
-        mover_piso(origen, destino, town);
-        moviendo(altura -1 , aux, destino, origen, town);
+        moviendo(altura-1, origen, aux, destino, town, modo);
+        mover_piso(origen, destino, town, modo);
+        moviendo(altura -1 , aux, destino, origen, town,modo);
     }
     
 }
