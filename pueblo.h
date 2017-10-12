@@ -31,7 +31,7 @@ int* crear_diametros(int largo);
 int *ordenar_lista(int *lista, int largo);
 void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town);
 void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town);
-void print_tower(int pisos, pueblo *town);
+void print_tower(pueblo *town);
 
 
 //---------------------
@@ -75,6 +75,7 @@ void mover_piso(int origen, int destino, pueblo **pueblos){
     (*pueblos)[origen-1].altura--;
     push(&((*pueblos)[destino-1].comienzo), aux);
     (*pueblos)[destino-1].altura++;
+    print_tower(*pueblos);
 }
 
 piso* pop(piso **p){
@@ -120,21 +121,19 @@ void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town){
 }
 
 void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town){
+    system("PAUSE");
+    
     if (altura == 1){
         mover_piso(origen, destino, town);
-        print_tower(altura, (*town));
     }else{
-        print_tower(altura, (*town));
         moviendo(altura-1, origen, aux, destino, town);
-        print_tower(altura, (*town));
         mover_piso(origen, destino, town);
-        print_tower(altura, (*town));
         moviendo(altura -1 , aux, destino, origen, town);
-        print_tower(altura, (*town));
     }
+    
 }
 
-void print_tower(int pisos, pueblo *town){
+void print_tower(pueblo *town){
     int max_altura = 0;
     int highest_town = 0;
 

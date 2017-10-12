@@ -6,7 +6,6 @@
 
 
 //Metodos
-void print_tower(int N, pueblo*town);
 
 int main(int argc, char **argv){
     if (argc != 5){
@@ -22,13 +21,13 @@ int main(int argc, char **argv){
     //MAIN CODE
 
     pueblo *pueblos = crear_pueblos(pisos, origen);
-    print_tower(pisos, pueblos);
+    print_tower(pueblos);
     if (mode == 0){
         moviendo(pisos, origen, destino, aux, &pueblos);
-        print_tower(pisos, pueblos);
+        print_tower(pueblos);
     }else{
         moviendo_por_paso(pisos, origen, destino, aux, &pueblos);
     }
-    
+
     return EXIT_SUCCESS;
 }
