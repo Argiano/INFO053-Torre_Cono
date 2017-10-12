@@ -75,7 +75,16 @@ void mover_piso(int origen, int destino, pueblo **pueblos){
     (*pueblos)[origen-1].altura--;
     push(&((*pueblos)[destino-1].comienzo), aux);
     (*pueblos)[destino-1].altura++;
+
+}
+
+void mover_piso_por_paso(int origen, int destino, pueblo **pueblos){
+    piso *aux = pop(&((*pueblos)[origen-1].comienzo));
+    (*pueblos)[origen-1].altura--;
+    push(&((*pueblos)[destino-1].comienzo), aux);
+    (*pueblos)[destino-1].altura++;
     print_tower(*pueblos);
+    system("PAUSE");
 }
 
 piso* pop(piso **p){
@@ -121,14 +130,12 @@ void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town){
 }
 
 void moviendo_por_paso(int altura, int origen, int destino, int aux,  pueblo **town){
-    system("PAUSE");
-    
     if (altura == 1){
-        mover_piso(origen, destino, town);
+        mover_piso_por_paso(origen, destino, town);
     }else{
-        moviendo(altura-1, origen, aux, destino, town);
-        mover_piso(origen, destino, town);
-        moviendo(altura -1 , aux, destino, origen, town);
+        moviendo_por_paso(altura-1, origen, aux, destino, town);
+        mover_piso_por_paso(origen, destino, town);
+        moviendo_por_paso(altura -1 , aux, destino, origen, town);
     }
     
 }
