@@ -47,7 +47,6 @@ pueblo *crear_pueblos(int altura, int torre){
     return p;
 }
 
-
 pueblo crear_pueblo(int altura, int numero){
     pueblo town;
     town.num_pueblo = numero;
