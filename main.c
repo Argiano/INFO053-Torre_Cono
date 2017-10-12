@@ -21,9 +21,13 @@ int main(int argc, char **argv){
     //MAIN CODE
 
     pueblo *pueblos = crear_pueblos(pisos, origen);
+    printf("----------ESTADO INICIAL----------\n");
     print_tower(pueblos);
     moviendo(pisos, origen, destino, aux, &pueblos, mode);
+    printf("Total de movimientos: %i\n", total_mov(pisos));
+    printf("-----------ESTADO FINAL----------\n");
     print_tower(pueblos);
+    
 
 
     return EXIT_SUCCESS;

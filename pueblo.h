@@ -69,12 +69,13 @@ piso* crear_piso(piso* start, int d){
     return p;
 }
 
-void mover_piso(int origen, int destino, pueblo **pueblos, int modo){
-    
+void mover_piso(int origen, int destino, pueblo **pueblos, int modo){ 
     piso *aux = pop(&((*pueblos)[origen-1].comienzo));
     (*pueblos)[origen-1].altura--;
     push(&((*pueblos)[destino-1].comienzo), aux);
     (*pueblos)[destino-1].altura++;
+    //Si el modo ingresado es distinto de cero se esperara a presionar
+    //una tecla para imprimir el estado actual de la torre
     if (modo != 0){
         system("PAUSE");
         print_tower(*pueblos);
@@ -152,5 +153,7 @@ void print_tower(pueblo *town){
     }
     printf("\n");
 }
-
+int total_mov(int pisos){
+    return pow(2,pisos)-1;
+}
 #endif
