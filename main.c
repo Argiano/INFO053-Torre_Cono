@@ -22,7 +22,7 @@ int main(int argc, char **argv){
 
     pueblo *pueblos = crear_pueblos(pisos, origen);
     printf("----------ESTADO INICIAL----------\n");
-    print_tower(pueblos);
+    print_tower_char(pueblos);
     moviendo(pisos, origen, destino, aux, &pueblos, mode);
     printf("Total de movimientos: %i\n", total_mov(pisos));
     printf("-----------ESTADO FINAL----------\n");
