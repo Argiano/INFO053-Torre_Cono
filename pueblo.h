@@ -148,7 +148,6 @@ void moviendo(int pisos, int origen, int destino, int aux,  pueblo **town, int m
 //Los pisos de la torre son impresos con el diametro al centro
 void print_tower(pueblo *town){
     int max_altura = 0;
-    int highest_town = 0;
 
     for (int h = 0; h < 3; h++){
         max_altura = (town[h].altura > max_altura)? town[h].altura: max_altura;
@@ -195,8 +194,8 @@ void print_tower_char(pueblo *town){
                     temp = temp->abajo;
                 }
                 
-                for (int a = 0; a < 24; a++){
-                    int spaces = 24 - (*temp).diametro;
+                for (int a = 0; a < ANCHO_MAXIMO; a++){
+                    int spaces = ANCHO_MAXIMO - (*temp).diametro;
                     if(a <= spaces/2 || a > ((*temp).diametro)+spaces/2){
                         strcat(buf," ");
                     }else{
@@ -205,7 +204,7 @@ void print_tower_char(pueblo *town){
                 }
                 
             }else{
-                for (int a = 0; a < 24; a++){
+                for (int a = 0; a < ANCHO_MAXIMO; a++){
                     strcat(buf," ");
                 }
             }
