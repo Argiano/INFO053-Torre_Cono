@@ -18,6 +18,10 @@ int main(int argc, char **argv){
     int mode = atoi(argv[4]);
 
     //Validacion entradas
+    if (pisos <1){
+        fprintf(stderr, "numero de pisos debe ser mayor que cero\n");
+        exit(EXIT_FAILURE);
+    }
     if (mode != 1 && mode != 0){
         fprintf(stderr, "modo incorrecto. Debe ingresar 0/1\n");
         exit(EXIT_FAILURE);
