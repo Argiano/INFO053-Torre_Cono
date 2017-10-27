@@ -33,6 +33,8 @@ int main(int argc, char **argv){
     }
     int aux = (origen+destino == 4) ? 2 : ((origen+destino == 5) ? 1: 3);
 
+    srand(pisos);
+    
     //MAIN CODE
 
     pueblo *pueblos = crear_pueblos(pisos, origen);

@@ -7,14 +7,14 @@
                 "request": "launch",
                 "program": "${workspaceRoot}/prog.exe",
                 "args": [
-                    "3 2 1 1"
+                    "5","2","3","0"
                 ],
                 "stopAtEntry": false,
                 "cwd": "${workspaceRoot}",
                 "environment": [],
-                "externalConsole": true,
+                "externalConsole": false,
                 "MIMode": "gdb",
-                "miDebuggerPath": "",
+                "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
                 "setupCommands": [
                     {
                         "description": "Enable pretty-printing for gdb",
